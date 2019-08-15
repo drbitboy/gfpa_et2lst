@@ -1,3 +1,6 @@
+### Ignore kernels*/ sub-directories
+kernels*
+
 # Prerequisites
 *.d
 
