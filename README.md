@@ -20,4 +20,6 @@ The maximum phase angles should, in principle, coincide more or less exactly wit
 
 I suspect the difference has to do with aberration correction, but I have not been able to prove it.
 
+Another possibility is that a phase angle maximum occurs at a slightly different point than LST midnight because the sub-solar __LAT__itude is always changing (except at solstices), and LST is essentially a measurement of longitude only that does not take latitude into account.
+
 Brian Carcich, 2019-08-14
