@@ -1,6 +1,14 @@
 # gfpa_et2lst
 Compare results of SPICE toolkit routine GFPA against ET2LST 
 
+## Usage
+
+    [Edit CSPICETOP make variable in Makefile]
+
+    make      ### Build executable
+
+    make run  ### Download kernels if needed, and run test
+
 ## Overview of CSPPICE app ge.cpp, using prototype C++ interface to CSPICE)
 
 GFPA finds ETs of local maxima of the phase angle from [InSight landing site (observer)], to [Mars (target)], to [Sun (illuminator)].
