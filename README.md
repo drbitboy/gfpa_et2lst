@@ -30,8 +30,8 @@ I suspect the difference has to do with aberration correction, but I have not be
 
 Another possibility is that a phase angle maximum occurs at a slightly different point than LST midnight because the sub-solar LATitude is always changing (except at solstices), and LST is essentially a measurement of longitude only, and it does not take latitude into account.  Here are some plots that suggest this is close:
 
-![](https://github.com/drbitboy/gfpa_et2lst/raw/master/sunvelz_vs_midnight_error.png.png)
+![](https://github.com/drbitboy/gfpa_et2lst/raw/master/sunvelz_vs_midnight_error.png)
 
-![](https://github.com/drbitboy/gfpa_et2lst/raw/master/sunposz_vs_midnight_error.png.png)
+![](https://github.com/drbitboy/gfpa_et2lst/raw/master/sunposz_vs_midnight_error.png)
 
 Brian Carcich, 2019-08-14
