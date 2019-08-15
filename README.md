@@ -16,7 +16,7 @@ The [ge] executable outputs the HH:MM:SS LST of the times, compressing contiguou
     23:59:57 55
     [...]
 
-The maximum phase angles should, in principle, coincide more or less exactly with LST midnights i.e. LST=00:00:00 (or perhaps 23:59:59), but in practice they are only close; the LSTs of are midnights +/= about 3s (Martian).
+The maximum phase angles should, in principle, coincide more or less exactly with LST midnights i.e. LST=00:00:00 (or perhaps 23:59:59), but in practice they are only close; the LSTs are midnight +/-3s (Martian).
 
 I suspect the difference has to do with aberration correction, but I have not been able to prove it.
 
