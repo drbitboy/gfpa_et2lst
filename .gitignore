@@ -1,6 +1,9 @@
 ### Ignore kernels*/ sub-directories
 kernels*
 
+### Ignore executable product of ge.cpp
+ge
+
 # Prerequisites
 *.d
 
