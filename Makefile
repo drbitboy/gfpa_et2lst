@@ -22,7 +22,7 @@ ge:: ge.cpp csppice.h
 ### Retrieve kernels; run ge executable with Meta-Kernel ismws.tm
 run: ge
 	@./retrieve_kernels.bash
-	./ge ismws.tm
+	./ge ismws.tm | tee insight_midnights_data.py
 
 ### Cleanup executable
 clean:

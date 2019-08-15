@@ -1,8 +1,11 @@
 ### Ignore kernels*/ sub-directories
 kernels*
 
-### Ignore executable product of ge.cpp
+### Ignore executable product of ge.cpp and other temporary files
 ge
+x.x
+insight_midnights_data.py
+__pycache__
 
 # Prerequisites
 *.d

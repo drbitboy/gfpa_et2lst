@@ -51,9 +51,33 @@ main(int argc, char** argv) {
       ,0.0,f_adjust,f_step,nintvls,cnfine,result
       );
 
+  // GFPA:  ETs of [Landing site-Mars-Sun] phase angle local maxima
+  // - This will be near midnight for each Sol
+  GFPA("MARS","SUN","LT+S","INSIGHT_LANDING_SITE","LOCMAX"
+      ,0.0,f_adjust,f_step,nintvls,cnfine,result
+      );
+
+  // Result window for GFPOSC
+  SDCELL rsltps(2000);
+
+  // Midnight longitude of Sun => vector from InSight landing site
+  // toward the center of mars
+  SpiceDouble mn_lon = RECSPH(SPKEZR("MARS",WNFETD(result,0).left(),"IAU_MARS","NONE","INSIGHT_LANDING_SITE").pos()).lon();
+
+  // GFPOSC:  ETs of Sun with longitude opposite InSight
+  GFPOSC("SUN","IAU_MARS","LT+S","MARS","SPHERICAL","LONGITUDE","="
+        ,mn_lon,f_adjust,f_step,nintvls,cnfine,rsltps
+        );
+
+  // The result count must be the same
+  assert(WNCARD(result)==WNCARD(rsltps));
+
   // Initialize previous LST (Local Solar Time) to nothing, & repeats
   SCVEC last_lst(99,'\0');
   int repeats = 0;
+
+  std::cout << "ltst_count_pairs=list()" << std::endl;
+  std::cout << "error_sunposz_sunvelz=list()" << std::endl;
 
   // Loop over results
   SpiceInt ncard = WNCARD(result); 
@@ -67,6 +91,14 @@ main(int argc, char** argv) {
   SpiceDouble wlon2 = - RECRAD(VMINUS(SPKEZR("MARS",et,"IAU_MARS","NONE","INSIGHT_LANDING_SITE").pos()).vout()).ra();
   assert(((wlon2-wlon)<2e-10) && (wlon<wlon2));
 
+  SpiceDouble et_posc = WNFETD(rsltps,icard).left();
+  SPKEZR sunez("SUN",et_posc,"IAU_MARS","LT+S","MARS");
+
+    std::cout
+    << "error_sunposz_sunvelz.append("
+    << "(" << (et-et_posc) << "," << sunez.pos()[2] << "," << sunez.vel()[2] << ",))"
+    << std::endl;
+
     // Calculate LST wrt that west lon at ET
     ET2LST lst(et,i_mars.code(),wlon,"PLANETOGRAPHIC",99,99);
 
@@ -77,7 +109,10 @@ main(int argc, char** argv) {
       // If repeats is zero (first loop pass) or LST is different ...
       if (repeats > 0) {
         // Output last LST along with how many times that LST occured
-        std::cout << last_lst.data() << " " << repeats << std::endl;
+        std::cout
+        << "ltst_count_pairs.append("
+        << "('" << last_lst.data() << "'," << repeats << ",))"
+        << std::endl;
       }
       // Set repeats to 1, and copy newly calculate LST to last_lst
       repeats = 1;
@@ -89,12 +124,14 @@ main(int argc, char** argv) {
   } // End of loop over results
 
   // Output remaining LST
-  std::cout << last_lst.data() << " " << repeats << std::endl;
-
-  // Output iscellaneous info
   std::cout
-  << std::setprecision(15)
-  << std::endl << et0
+  << "ltst_count_pairs.append("
+  << "('" << last_lst.data() << "'," << repeats << ",))"
+  << std::endl;
+
+  // Output miscellaneous info
+  std::cout << std::setprecision(15) << std::endl
+  << "et0,s_per_sol,result_count=" <<et0
   << "," << s_per_sol
   << "," << WNCARD(result)
   << std::endl;

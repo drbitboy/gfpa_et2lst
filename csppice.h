@@ -224,6 +224,7 @@ public:
         ) {
     wninsd_c(left,right,wn.cell_ptr());
   }
+  ~WNINSD(){}
 };
 
 ////////////////////////////////////////////////////////////////////////
@@ -254,6 +255,34 @@ public:
           ,cnfine.cell_ptr(),result.cell_ptr()
           );
   }
+  ~GFPA(){}
+};
+
+////////////////////////////////////////////////////////////////////////
+// Interface to gfposc_c
+class GFPOSC {
+private:
+public:
+  GFPOSC(ConstSpiceChar     * target
+        ,ConstSpiceChar     * frame
+        ,ConstSpiceChar     * abcorr
+        ,ConstSpiceChar     * obsrvr
+        ,ConstSpiceChar     * crdsys
+        ,ConstSpiceChar     * coord
+        ,ConstSpiceChar     * relate
+        ,SpiceDouble          refval
+        ,SpiceDouble          adjust
+        ,SpiceDouble          step
+        ,SpiceInt             nintvls
+        ,SDCELL             & cnfine
+        ,SDCELL             & result
+        ) {
+    gfposc_c(target,frame,abcorr,obsrvr,crdsys,coord
+            ,relate,refval,adjust,step,nintvls
+            ,cnfine.cell_ptr(),result.cell_ptr()
+            );
+  }
+  ~GFPOSC(){}
 };
 
 ////////////////////////////////////////////////////////////////////////
@@ -290,8 +319,8 @@ public:
 };
 
 ////////////////////////////////////////////////////////////////////////
-class WNFETD {
 // Interface to wnfetd_c
+class WNFETD {
 private:
   SpiceDouble _left;
   SpiceDouble _right;
@@ -367,6 +396,24 @@ public:
   SpiceDouble range() { return _range; }
   SpiceDouble ra() { return _ra; }
   SpiceDouble dec() { return _dec; }
+};
+
+////////////////////////////////////////////////////////////////////////
+// Interface to recsph_c
+class RECSPH {
+private:
+  SpiceDouble _r;
+  SpiceDouble _colat;
+  SpiceDouble _lon;
+public:
+  RECSPH(ConstSpiceDouble rectan[3]
+        ) {
+    recsph_c(rectan,&_r,&_colat,&_lon);
+  }
+  ~RECSPH(){}
+  SpiceDouble r() { return _r; }
+  SpiceDouble colat() { return _colat; }
+  SpiceDouble lon() { return _lon; }
 };
 
 #endif // __CSPPICE_H__
