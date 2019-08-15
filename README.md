@@ -34,6 +34,6 @@ Another possibility is that a phase angle maximum occurs at a slightly different
 
 ![](https://github.com/drbitboy/gfpa_et2lst/raw/master/sunposz_vs_midnight_error.png)
 
-![](https://github.com/drbitboy/gfpa_et2lst/raw/master/sunposzxvelz_vs_midnight_error.png)
+![](https://github.com/drbitboy/gfpa_et2lst/raw/master/sunvelzxposz_vs_midnight_error.png)
 
 Brian Carcich, 2019-08-14
