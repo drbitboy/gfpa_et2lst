@@ -28,3 +28,14 @@ plt.axvline()
 plt.xlabel('Sun position in IAU_MARS Z, km')
 plt.ylabel('ET error, GFPA(LOCMAX) - GFPOSC(=LONGITUDE), s')
 plt.show()
+
+vxps=[vel*pos for err,vel,pos in error_sunposz_sunvelz]
+
+plt.plot(vxps,errs,'-r')
+plt.plot(vxps[0],errs[0],'ob')
+plt.plot(vxps[-1],errs[-1],'ok')
+plt.axhline()
+plt.axvline()
+plt.xlabel('([Sun position] x [Sun velocity] in IAU_MARS Z, km')
+plt.ylabel('ET error, GFPA(LOCMAX) - GFPOSC(=LONGITUDE), s')
+plt.show()
